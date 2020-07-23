@@ -1,6 +1,7 @@
 package com.ccsynet.service;
 
 import com.ccsynet.pojo.Books;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -16,4 +17,6 @@ public interface BookService {
     Books queryBookById(int id);
     //查询全部Book,返回list集合
     List<Books> queryAllBook();
+    //搜索功能
+    List<Books> queryBookByName(String bookName);
 }

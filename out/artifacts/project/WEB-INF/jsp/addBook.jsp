@@ -2,14 +2,15 @@
   Created by IntelliJ IDEA.
   User: zhiyongliu
   Date: 2020/7/22
-  Time: 10:59 上午
+  Time: 10:58 上午
   To change this template use File | Settings | File Templates.
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <html>
 <head>
-    <title>修改信息</title>
+    <title>新增书籍</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- 引入 Bootstrap -->
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
@@ -21,18 +22,17 @@
         <div class="col-md-12 column">
             <div class="page-header">
                 <h1>
-                    <small>修改信息</small>
+                    <small>新增书籍</small>
                 </h1>
             </div>
         </div>
     </div>
-
-    <form action="${pageContext.request.contextPath}/book/updateBook" method="post">
-        <input type="hidden" name="bookID" value="${book.getBookID()}"/>
-        书籍名称：<input type="text" name="bookName" value="${book.getBookName()}"/><br><br><br>
-        书籍数量：<input type="text" name="bookCounts" value="${book.getBookCounts()}"/><br><br><br>
-        书籍详情：<input type="text" name="detail" value="${book.getDetail() }"/><br><br><br>
-        <input type="submit" value="提交"/>
+    <form action="${pageContext.request.contextPath}/book/addBook" method="post">
+        <%--这里name要和实例类model属性名一致，否则后端controller接受不到--%>
+        书籍名称：<input type="text" name="bookName" required><br><br><br>
+        书籍数量：<input type="text" name="bookCounts" required><br><br><br>
+        书籍详情：<input type="text" name="detail" required><br><br><br>
+        <input type="submit" value="添加">
     </form>
 
 </div>

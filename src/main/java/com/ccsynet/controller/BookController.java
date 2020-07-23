@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -55,9 +56,22 @@ public class BookController {
         return "redirect:/book/allBook";
     }
 
+    /*通过 @PathVariable 可以将URL中占位符参数{xxx}绑定到处理器类的方法形参中@PathVariable(“xxx“)*/
     @RequestMapping("/del/{bookId}")
     public String deleteBook(@PathVariable("bookId") int id) {
         bookService.deleteBookById(id);
         return "redirect:/book/allBook";
+    }
+
+    @RequestMapping("/queryBook")
+    public String queryBookByName(Model model, String queryBookName){
+        List<Books> list = bookService.queryBookByName(queryBookName);
+
+        if(list.isEmpty()){
+            model.addAttribute("error", "未查到书籍");
+            list = bookService.queryAllBook();
+        }
+        model.addAttribute("list", list);
+        return "allBook";
     }
 }
